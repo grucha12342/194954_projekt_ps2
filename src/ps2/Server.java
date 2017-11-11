@@ -20,18 +20,20 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/echo")
 public class Server {
         /**
-     * @OnOpen allows us to intercept the creation of a new session.
+     * @throws ClassNotFoundException 
+         * @OnOpen allows us to intercept the creation of a new session.
      * The session class allows us to send data to the user.
      * In the method onOpen, we'll let the user know that the handshake was 
      * successful.
      */
     
     @OnOpen
-    public void onOpen(Session session){
+    public void onOpen(Session session) throws ClassNotFoundException{
         System.out.println(session.getId()); 
         try {
             session.getBasicRemote().sendText("Connection Established");
             SessionHandler.addSession(session);
+            DatabaseHandler.connectToDb();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

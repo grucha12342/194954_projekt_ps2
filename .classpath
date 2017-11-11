@@ -10,5 +10,10 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/Grusza/Documents/javax.servlet-api-3.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Grusza/Documents/javax.websocket-api-1.0-rc4.jar"/>
+	<classpathentry kind="con" path="com.microsoft.sqljdbc4.DRIVER_JAVAEE6/6.1.0">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
