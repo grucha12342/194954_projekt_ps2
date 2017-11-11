@@ -1,40 +1,61 @@
 package ps2;
-
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.websocket.OnClose;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.PathParam;
+import javax.websocket.server.ServerEndpoint;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
- * Servlet implementation class Server
+ *
+ * @author Grucha
  */
-@WebServlet(description = "Websocket handler", urlPatterns = { "/Server" })
-public class Server extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
+@ServerEndpoint(value = "/echo")
+public class Server {
+        /**
+     * @OnOpen allows us to intercept the creation of a new session.
+     * The session class allows us to send data to the user.
+     * In the method onOpen, we'll let the user know that the handshake was 
+     * successful.
      */
-    public Server() {
-        // TODO Auto-generated constructor stub
+    
+    @OnOpen
+    public void onOpen(Session session){
+        System.out.println(session.getId()); 
+        try {
+            session.getBasicRemote().sendText("Connection Established");
+            SessionHandler.addSession(session);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+ 
+    /**
+     * When a user sends a message to the server, this method will intercept the message
+     * and allow us to react to it. For now the message is read as a String.
+     */
+    @OnMessage
+    public void onMessage(String message, Session session){
+        System.out.println("Message from " + session.getId() + ": " + message);
+        //session.getBasicRemote().sendText(message);
+        SessionHandler.sendToAllConnectedSessions(message);
+    }
+ 
+    /**
+     * The user closes the connection.
+     * 
+     * Note: you can't send messages to the client from this method
+     */
+    @OnClose
+    public void onClose(Session session){
+        System.out.println("Session " +session.getId()+" has ended");
+        SessionHandler.removeSession(session);
+    }
 }
