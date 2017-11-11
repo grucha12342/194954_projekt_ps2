@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" %>
-<%ArrayList<String> result =null;%>
+<%ArrayList<String> result = null;%>
+<%ArrayList<String> resultTables = null;%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -75,18 +76,52 @@
            function writeResponse(text){
                messages.innerHTML += "<br/>" + text;
            }
-          
        </script>
+       
     <center>
     	<h1> Drop down box or select element</h1>
-        <select>
-        <%  result = ps2.DatabaseHandler.connectToDb();
+        <select id="dropdown">
+        <%  result = ps2.DatabaseHandler.fetchTables();
         for (String temp : result) {
         %>
             <option><%= temp%></option>
         <% } %>
         </select>
+        <input type="button" id="button" value="Show table content" onclick="myFunction()"/>
 	</center>
-      
+        <script>
+        function myFunction() {
+       	 	var e = document.getElementById("dropdown");
+        	var strUser = e.options[e.selectedIndex].value;
+        	messages.innerHTML += "<br/>" + strUser;
+        }
+        </script>
+        <br></br>
+        <br></br>
+        <center>
+        <table style="width:80%%" border="1">
+		  <tr>
+		    <th>LastName</th>
+		    <th>FirstName</th> 
+		    <th>KnownAs</th> 
+		    <th>Genres</th> 
+		    <th>Age</th>
+		  </tr>
+		  <tr>
+		  <%  resultTables = ps2.DatabaseHandler.fetchDataFromTable("MusicArtists");
+		  int i=0;
+        for (String temp : resultTables) {
+        	i++;
+        %>
+            <th><%= temp%></th>
+        <% if(i%5==0) { %>
+        	</tr>
+        	<tr>
+        <%
+        }
+        } %>
+          </tr>
+		</table>
+		</center>
    </body>
 </html>
