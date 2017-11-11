@@ -1,19 +1,22 @@
 package ps2;
 import java.sql.*;
+import java.util.ArrayList;
+
 import com.microsoft.sqlserver.*;
 
 public class DatabaseHandler {
-	public static void connectToDb() throws ClassNotFoundException
+	public static ArrayList<String> connectToDb() throws ClassNotFoundException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String url = "jdbc:sqlserver://194954ps3db.database.windows.net:1433;database=194954_projekt_ps2;user=ps3db@194954ps3db;password=tatib@w5ese;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		Connection connection = null;
+		ArrayList<String> list = new ArrayList<String>();
 		try {
 			connection = DriverManager.getConnection(url);
 			String schema = connection.getSchema();
 
 			// Create and execute a SELECT SQL statement.
-			String selectSql = "SELECT * FROM Albums;";
+			String selectSql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE';";
 
 			try (Statement statement = connection.createStatement();
 					ResultSet resultSet = statement.executeQuery(selectSql)) {
@@ -24,12 +27,15 @@ public class DatabaseHandler {
 				{
 					System.out.println(resultSet.getString(1) + " "
 							+ resultSet.getString(2));
+					list.add(resultSet.getString(3));
                 }
 				connection.close();
+				return list;
 			}                   
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			return list;
 		}
 	}
 	public static void closeConnDb()

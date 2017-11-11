@@ -1,6 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" %>
+<%ArrayList<String> result =null;%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -75,36 +77,16 @@
            }
           
        </script>
-       
-       <%
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String url = "jdbc:sqlserver://194954ps3db.database.windows.net:1433;database=194954_projekt_ps2;user=ps3db@194954ps3db;password=tatib@w5ese;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection(url);
-			String schema = connection.getSchema();
-
-			// Create and execute a SELECT SQL statement.
-			String selectSql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE';";
-
-			try (Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery(selectSql)) {
-
-%>
     <center>
     	<h1> Drop down box or select element</h1>
         <select>
-        <%  while(resultSet.next()){ %>
-            <option><%= resultSet.getString(3)%></option>
+        <%  result = ps2.DatabaseHandler.connectToDb();
+        for (String temp : result) {
+        %>
+            <option><%= temp%></option>
         <% } %>
         </select>
 	</center>
-	<% 				connection.close();
-			}                   
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		} %>
       
    </body>
 </html>
