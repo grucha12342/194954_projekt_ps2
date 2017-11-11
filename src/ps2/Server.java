@@ -33,7 +33,7 @@ public class Server {
         try {
             session.getBasicRemote().sendText("Connection Established");
             SessionHandler.addSession(session);
-            DatabaseHandler.connectToDb();
+            //DatabaseHandler.connectToDb();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
