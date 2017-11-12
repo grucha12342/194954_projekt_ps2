@@ -97,12 +97,19 @@
        	 	var e = document.getElementById("dropdown");
         	var strUser = e.options[e.selectedIndex].value;
         	//messages.innerHTML += "<br/>" + strUser;
-        	if( strUser == "MusicArtists")
+        	if( strUser == "MusicArtists") {
         		document.getElementById('table').style.display="block";
-        	else if( strUser == "Albums")
+        		document.getElementById('table2').style.display="none";
+        	}
+        	else if( strUser == "Albums") {
         		document.getElementById('table2').style.display="block";
-        	else 
+        		document.getElementById('table').style.display="none";
+        	}
+        	else {
         		messages.innerHTML += "<br/>" + "Error";
+        		document.getElementById('table').style.display="none";
+        		document.getElementById('table2').style.display="none";
+        	}
         }
         </script>
         <br></br>
@@ -132,8 +139,8 @@
           </tr>
 		</table>
 		</center>
-		</div>
 		<br></br>
+		</div>
 		<div id="table2" style="display: none">
         <center>
         <table style="width:80%%" border="1">
@@ -159,6 +166,15 @@
         } %>
           </tr>
 		</table>
+		</center>
+		<br></br>
+		</div>
+		<div id="sqlexec">
+		<center>
+			<form action="/194954_projekt_ps2/sqlview.jsp" method=POST>
+  				Sql Query: <input type="text" name="sqlquery"><br>
+  				<input type="submit" value="Submit">
+			</form>
 		</center>
 		</div>
    </body>
