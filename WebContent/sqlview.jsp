@@ -10,9 +10,11 @@
 </head>
 <body>
 <p>Druga strona</p>
-<p><%= request.getParameter("sqlquery")%></p>
+<p><%= request.getParameter("txtarea")%></p>
+<div>
+<center>
 <%
-	String sqlquery = request.getParameter("sqlquery");
+	String sqlquery = request.getParameter("txtarea");
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	String url = "jdbc:sqlserver://194954ps3db.database.windows.net:1433;database=194954_projekt_ps2;user=ps3db@194954ps3db;password=tatib@w5ese;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 	Connection connection = null;
@@ -22,12 +24,18 @@
 		if(sqlquery.contains("select")) {
 			try (Statement statement = connection.createStatement();
 					ResultSet resultSet = statement.executeQuery(sqlquery)) {
-				
+				ResultSetMetaData rsmd = resultSet.getMetaData();
+				%><p>Row size: <%= rsmd.getColumnCount() %></p>
+				<table style="width:80%%" border="1"><%
 				while (resultSet.next())
 				{
-					%><p><%= resultSet.getString(1) %></p><%
+					%><tr><%for(int i = 1; i <= rsmd.getColumnCount(); i++) {%>
+					<th><%=resultSet.getString(i)%> </th>
+					<% } %>
+					</tr><%
                 }
 				connection.close();
+				%></table><%
 			}  
 		} else {
 			try (Statement statement = connection.createStatement();) {
@@ -42,6 +50,8 @@
 		%><p><%= e.getMessage() %></p><%
 	}
 %>
+</center>
+</div>
 <a href="index.jsp">Back to home page</a>
 </body>
 </html>

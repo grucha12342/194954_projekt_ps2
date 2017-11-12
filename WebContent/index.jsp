@@ -117,6 +117,7 @@
         <center>
         <table style="width:80%%" border="1">
 		  <tr>
+		  	<th>Id</th>
 		    <th>Last Name</th>
 		    <th>First Name</th> 
 		    <th>KnownAs</th> 
@@ -130,7 +131,7 @@
         	i++;
         %>
             <th><%= temp%></th>
-        <% if(i%5==0) { %>
+        <% if(i%6==0) { %>
         	</tr>
         	<tr>
         <%
@@ -145,6 +146,7 @@
         <center>
         <table style="width:80%%" border="1">
 		  <tr>
+		  	<th>Id</th>
 		    <th>Album Name</th>
 		    <th>Label</th> 
 		    <th>Released in</th> 
@@ -158,7 +160,7 @@
         	j++;
         %>
             <th><%= temp%></th>
-        <% if(j%5==0) { %>
+        <% if(j%6==0) { %>
         	</tr>
         	<tr>
         <%
@@ -171,8 +173,9 @@
 		</div>
 		<div id="sqlexec">
 		<center>
-			<form action="/194954_projekt_ps2/sqlview.jsp" method=POST>
-  				Sql Query: <input type="text" name="sqlquery"><br>
+			<form action="/194954_projekt_ps2/sqlview.jsp" method=POST id="sqlquery" name="sqlquery">
+				Insert sql query here: <br>
+				<textarea id="txtarea" name="txtarea" form="sqlquery" rows="6" cols="60"></textarea><br></br>
   				<input type="submit" value="Submit">
 			</form>
 		</center>

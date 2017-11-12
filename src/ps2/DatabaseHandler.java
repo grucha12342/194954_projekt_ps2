@@ -57,7 +57,7 @@ public class DatabaseHandler {
 				
 				while (resultSet.next())
 				{
-					for(int i = 2; i <= 6; i++) {
+					for(int i = 1; i <= 6; i++) {
 						//list.add(resultSet.getString(3));
 						columns.add(resultSet.getString(i));
 					}
