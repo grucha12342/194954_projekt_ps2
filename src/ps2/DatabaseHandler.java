@@ -60,10 +60,7 @@ public class DatabaseHandler {
 					for(int i = 2; i <= 6; i++) {
 						//list.add(resultSet.getString(3));
 						columns.add(resultSet.getString(i));
-						//if(i == 6)
-							//columns.add(resultSet.getInt(i));
 					}
-					
                 }
 				connection.close();
 				return columns;

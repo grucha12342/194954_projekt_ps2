@@ -11,6 +11,7 @@
 <title>Programowanie sieciowe 2</title>
 </head>
 <body> 
+       <!--  
        <div>
            Message: <input type="text" id="messageinput"/> <br><br>
        </div>
@@ -20,10 +21,12 @@
            <button type="button" onclick="send();" >Send</button>
            <button type="button" onclick="closeSocket();" >Close</button>
        </div>
+       -->
        <!-- Server responses get written here -->
        <div id="messages"></div>
       
        <!-- Script to utilise the WebSocket -->
+       
        <script type="text/javascript">
                       
            var webSocket;
@@ -93,16 +96,22 @@
         function myFunction() {
        	 	var e = document.getElementById("dropdown");
         	var strUser = e.options[e.selectedIndex].value;
-        	messages.innerHTML += "<br/>" + strUser;
+        	//messages.innerHTML += "<br/>" + strUser;
+        	if( strUser == "MusicArtists")
+        		document.getElementById('table').style.display="block";
+        	else if( strUser == "Albums")
+        		document.getElementById('table2').style.display="block";
+        	else 
+        		messages.innerHTML += "<br/>" + "Error";
         }
         </script>
         <br></br>
-        <br></br>
+        <div id="table" style="display: none">
         <center>
         <table style="width:80%%" border="1">
 		  <tr>
-		    <th>LastName</th>
-		    <th>FirstName</th> 
+		    <th>Last Name</th>
+		    <th>First Name</th> 
 		    <th>KnownAs</th> 
 		    <th>Genres</th> 
 		    <th>Age</th>
@@ -123,5 +132,34 @@
           </tr>
 		</table>
 		</center>
+		</div>
+		<br></br>
+		<div id="table2" style="display: none">
+        <center>
+        <table style="width:80%%" border="1">
+		  <tr>
+		    <th>Album Name</th>
+		    <th>Label</th> 
+		    <th>Released in</th> 
+		    <th>Track number</th> 
+		    <th>ArtistID</th>
+		  </tr>
+		  <tr>
+		  <%  resultTables = ps2.DatabaseHandler.fetchDataFromTable("Albums");
+		  int j=0;
+        for (String temp : resultTables) {
+        	j++;
+        %>
+            <th><%= temp%></th>
+        <% if(j%5==0) { %>
+        	</tr>
+        	<tr>
+        <%
+        }
+        } %>
+          </tr>
+		</table>
+		</center>
+		</div>
    </body>
 </html>
