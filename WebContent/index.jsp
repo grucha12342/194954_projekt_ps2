@@ -118,8 +118,8 @@
         <table style="width:80%%" border="1">
 		  <tr>
 		  	<th>Id</th>
-		    <th>Last Name</th>
-		    <th>First Name</th> 
+		    <th>LastName</th>
+		    <th>FirstName</th> 
 		    <th>KnownAs</th> 
 		    <th>Genres</th> 
 		    <th>Age</th>
@@ -147,10 +147,10 @@
         <table style="width:80%%" border="1">
 		  <tr>
 		  	<th>Id</th>
-		    <th>Album Name</th>
+		    <th>AlbumName</th>
 		    <th>Label</th> 
-		    <th>Released in</th> 
-		    <th>Track number</th> 
+		    <th>Released</th> 
+		    <th>TrackNo</th> 
 		    <th>ArtistID</th>
 		  </tr>
 		  <tr>
