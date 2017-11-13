@@ -95,26 +95,6 @@
   			<input type="submit" value="Show table content">
 		</form>
 	</center>
-        <script>
-        function myFunction() {
-       	 	var e = document.getElementById("dropdown");
-        	var strUser = e.options[e.selectedIndex].value;
-        	//messages.innerHTML += "<br/>" + strUser;
-        	if( strUser == "MusicArtists") {
-        		document.getElementById('table').style.display="block";
-        		document.getElementById('table2').style.display="none";
-        	}
-        	else if( strUser == "Albums") {
-        		document.getElementById('table2').style.display="block";
-        		document.getElementById('table').style.display="none";
-        	}
-        	else {
-        		messages.innerHTML += "<br/>" + "Error";
-        		document.getElementById('table').style.display="none";
-        		document.getElementById('table2').style.display="none";
-        	}
-        }
-        </script>
         <br></br>
 		<div id="sqlexec">
 		<center>
