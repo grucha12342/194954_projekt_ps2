@@ -83,15 +83,17 @@
        </script>
        
     <center>
-    	<h1> Drop down box or select element</h1>
-        <select id="dropdown">
-        <%  result = ps2.DatabaseHandler.fetchTables();
-        for (String temp : result) {
-        %>
+    	<form action="/194954_projekt_ps2/tableview.jsp" method=POST id="table" name="table">
+			<h1> Drop down box or select element</h1>
+        	<select id="dropdown" name="dropdown">
+        	<%  result = ps2.DatabaseHandler.fetchTables();
+        	for (String temp : result) {
+        	%>
             <option><%= temp%></option>
-        <% } %>
-        </select>
-        <input type="button" id="button" value="Show table content" onclick="myFunction()"/>
+        	<% } %>
+        	</select>
+  			<input type="submit" value="Show table content">
+		</form>
 	</center>
         <script>
         function myFunction() {
@@ -114,64 +116,6 @@
         }
         </script>
         <br></br>
-        <div id="table" style="display: none">
-        <center>
-        <table style="width:80%%" border="1" class="sortable">
-		  <tr>
-		  	<th>Id</th>
-		    <th>LastName</th>
-		    <th>FirstName</th> 
-		    <th>KnownAs</th> 
-		    <th>Genres</th> 
-		    <th>Age</th>
-		  </tr>
-		  <tr>
-		  <%  resultTables = ps2.DatabaseHandler.fetchDataFromTable("MusicArtists");
-		  int i=0;
-        for (String temp : resultTables) {
-        	i++;
-        %>
-            <td><%= temp%></td>
-        <% if(i%6==0) { %>
-        	</tr>
-        	<tr>
-        <%
-        }
-        } %>
-          </tr>
-		</table>
-		</center>
-		<br></br>
-		</div>
-		<div id="table2" style="display: none">
-        <center>
-        <table style="width:80%%" border="1" class="sortable">
-		  <tr>
-		  	<th>Id</th>
-		    <th>AlbumName</th>
-		    <th>Label</th> 
-		    <th>Released</th> 
-		    <th>TrackNo</th> 
-		    <th>ArtistID</th>
-		  </tr>
-		  <tr>
-		  <%  resultTables = ps2.DatabaseHandler.fetchDataFromTable("Albums");
-		  int j=0;
-        for (String temp : resultTables) {
-        	j++;
-        %>
-            <td><%= temp%></td>
-        <% if(j%6==0) { %>
-        	</tr>
-        	<tr>
-        <%
-        }
-        } %>
-          </tr>
-		</table>
-		</center>
-		<br></br>
-		</div>
 		<div id="sqlexec">
 		<center>
 			<form action="/194954_projekt_ps2/sqlview.jsp" method=POST id="sqlquery" name="sqlquery">
