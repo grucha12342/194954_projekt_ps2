@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="sorttable.js"></script>
 <title>Programowanie sieciowe 2</title>
 </head>
 <body> 
@@ -115,7 +116,7 @@
         <br></br>
         <div id="table" style="display: none">
         <center>
-        <table style="width:80%%" border="1">
+        <table style="width:80%%" border="1" class="sortable">
 		  <tr>
 		  	<th>Id</th>
 		    <th>LastName</th>
@@ -130,7 +131,7 @@
         for (String temp : resultTables) {
         	i++;
         %>
-            <th><%= temp%></th>
+            <td><%= temp%></td>
         <% if(i%6==0) { %>
         	</tr>
         	<tr>
@@ -144,7 +145,7 @@
 		</div>
 		<div id="table2" style="display: none">
         <center>
-        <table style="width:80%%" border="1">
+        <table style="width:80%%" border="1" class="sortable">
 		  <tr>
 		  	<th>Id</th>
 		    <th>AlbumName</th>
@@ -159,7 +160,7 @@
         for (String temp : resultTables) {
         	j++;
         %>
-            <th><%= temp%></th>
+            <td><%= temp%></td>
         <% if(j%6==0) { %>
         	</tr>
         	<tr>

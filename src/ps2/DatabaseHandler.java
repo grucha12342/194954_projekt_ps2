@@ -1,8 +1,10 @@
 package ps2;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.microsoft.sqlserver.*;
+import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
 public class DatabaseHandler {
 	public static ArrayList<String> fetchTables() throws ClassNotFoundException

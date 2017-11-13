@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="sorttable.js"></script>
 <title>Programowanie sieciowe 2</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
 					ResultSet resultSet = statement.executeQuery(sqlquery)) {
 				ResultSetMetaData rsmd = resultSet.getMetaData();
 				%><p>Row size: <%= rsmd.getColumnCount() %></p>
-				<table style="width:80%%" border="1">
+				<table style="width:80%%" border="1" class="sortable">
 				<tr>
 				<%for(int i = 1; i <= rsmd.getColumnCount(); i++) {%>
 				<th><%=rsmd.getColumnName(i)%> </th>
@@ -35,7 +36,7 @@
 				while (resultSet.next())
 				{
 					%><tr><%for(int j = 1; j <= rsmd.getColumnCount(); j++) {%>
-					<th><%=resultSet.getString(j)%> </th>
+					<td><%=resultSet.getString(j)%> </td>
 					<% } %>
 					</tr><%
                 }
