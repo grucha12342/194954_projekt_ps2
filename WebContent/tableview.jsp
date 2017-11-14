@@ -11,10 +11,9 @@
 <script src="sorttable.js"></script>
 <title>Programowanie sieciowe 2</title>
 </head>
-<body>
-<p>Druga strona</p>  
+<body onload="openSocket()"> 
        <div>
-           Message: <input type="text" id="messageinput"/> <br><br>
+           Message: <input type="text" id="messageinput" value="update"/> <br><br>
        </div>
        <br>
        <div>
@@ -23,7 +22,9 @@
            <button type="button" onclick="closeSocket();" >Close</button>
        </div>
        <!-- Server responses get written here -->
-       <div id="messages"></div>
+       <div id="messages">
+       	<p><%=request.getParameter("update") %></p>
+       </div>
       
        <!-- Script to utilise the WebSocket -->
        
@@ -50,8 +51,10 @@
                    // Leave a comment if you know the answer.
                    if(event.data === undefined)
                        return;
+                	   
 
                    writeResponse(event.data);
+
                };
 
                webSocket.onmessage = function(event){
@@ -80,19 +83,28 @@
 
            function writeResponse(text){
                messages.innerHTML += "<br/>" + text;
-           }
+           }     
        </script>
 <p><%= request.getParameter("dropdown")%></p>
  <div id="table">
         <center>
         <table style="width:80%%" border="1" class="sortable">
 		  <tr>
+		  <% if(request.getParameter("dropdown").equals("MusicArtists")) {%>
 		  	<th>Id</th>
 		    <th>LastName</th>
 		    <th>FirstName</th> 
 		    <th>KnownAs</th> 
 		    <th>Genres</th> 
 		    <th>Age</th>
+		    <%} else { %>
+		    <th>Id</th>
+		    <th>AlbumName</th>
+		    <th>Label</th> 
+		    <th>Released</th> 
+		    <th>TrackNo</th> 
+		    <th>ArtistID</th>
+		    <% }; %>
 		  </tr>
 		  <tr>
 		  <%  resultTables = ps2.DatabaseHandler.fetchDataFromTable(request.getParameter("dropdown"));
@@ -102,6 +114,7 @@
         %>
             <td><%= temp%></td>
         <% if(i%6==0) { %>
+        	
         	</tr>
         	<tr>
         <%
@@ -109,9 +122,18 @@
         } %>
           </tr>
 		</table>
+		<br>
+		<form action="/194954_projekt_ps2/addrowview.jsp" method="POST">
+			<input type="hidden" name="tablename" value="<%=request.getParameter("dropdown")%>">
+  			<input type="submit" value="Add row">
+		</form>
 		</center>
 		<br></br>
 		</div>
 <a href="index.jsp">Back to home page</a>
+<script>
+if( webSocket.readyState == WebSocket.OPEN && <%=request.getParameter("update")%> == "yes")
+	send();
+</script>
 </body>
 </html>
