@@ -6,9 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <title>Programowanie sieciowe 2</title>
 </head>
 <body>
+<div class="container-fluid">
 <p>You are editing <%= request.getParameter("tablename")%> table</p>
 <div id="artists" style="display: none;">
  <form action="/194954_projekt_ps2/insertdata.jsp" method="POST">
@@ -54,5 +61,6 @@
 		document.getElementById('artists').setAttribute("style", "display:block");
 </script>
 <a href="index.jsp">Back to home page</a>
+</div>
 </body>
 </html>

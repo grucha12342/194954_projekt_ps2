@@ -9,10 +9,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="sorttable.js"></script>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <title>Programowanie sieciowe 2</title>
 </head>
-<body>        
+<body>  
+<div class="container-fluid">      
     <center>
+    <div>
     	<form action="/194954_projekt_ps2/tableview.jsp" method=POST id="table" name="table">
 			<h1> Drop down box or select element</h1>
         	<select id="dropdown" name="dropdown">
@@ -24,6 +32,7 @@
         	</select>
   			<input type="submit" value="Show table content">
 		</form>
+	</div>
 	</center>
         <br></br>
 		<div id="sqlexec">
@@ -35,5 +44,6 @@
 			</form>
 		</center>
 		</div>
-   </body>
+</div>
+</body>
 </html>
