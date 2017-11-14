@@ -30,7 +30,7 @@
 		<center>
 			<form action="/194954_projekt_ps2/sqlview.jsp" method=POST id="sqlquery" name="sqlquery">
 				Insert sql query here: <br>
-				<textarea id="txtarea" name="txtarea" form="sqlquery" rows="6" cols="60"></textarea><br></br>
+				<textarea id="txtarea" name="txtarea" form="sqlquery" rows="6" cols="60"><%=request.getParameter("txtarea")%></textarea><br></br>
   				<input type="submit" value="Submit">
 			</form>
 		</center>

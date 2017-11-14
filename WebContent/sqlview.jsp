@@ -58,6 +58,9 @@
 %>
 </center>
 </div>
-<a href="index.jsp">Back to home page</a>
+			<form action="/194954_projekt_ps2/index.jsp" method=POST id="sqlquery" name="sqlquery">
+				<input type="hidden" value="<%=request.getParameter("txtarea") %>" name="txtarea" />
+  				<input type="submit" value="Back to home page">
+			</form>
 </body>
 </html>
