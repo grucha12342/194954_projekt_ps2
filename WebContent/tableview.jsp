@@ -121,7 +121,17 @@
         %>
             <td><%= temp%></td>
         <% if(i%6==0) { %>
-        	
+        	<td><input type="button" name="edit" value="Edit" onclick= ></td>
+        	<td><input type="button" name="delete" value="Delete" onclick="deletePost('<%=i/6 %>', '<%=request.getParameter("dropdown") %>');" ></td>
+        	<script type="text/javascript">
+		function deletePost(id, table) {
+			
+		    var ask = window.confirm("Are you sure you want to delete row with id="+param+"?");
+		    if (ask) {
+		        window.location="/194954_projekt_ps2/removedata.jsp?id="+id+"&table="+table
+		    }
+		}
+		</script>
         	</tr>
         	<tr>
         <%

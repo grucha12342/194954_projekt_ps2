@@ -17,16 +17,13 @@
 </head>
 <body>
 <div class="container-fluid">
-<p>Wait for end of execute query..</p>
+<p>Wait for confirmation...</p>
+<p><%=request.getParameter("table")%></p>
 <div>
 <center>
+<p>Wait for query execution...</p>
 <%
-	String sqlquery;
-	if(request.getParameter("dropdown").equals("Albums")) {
-		sqlquery = "INSERT INTO Albums (AlbumName, Label, Released, TrackNo, ArtistID) VALUES ('"+request.getParameter("albumname")+"', '"+request.getParameter("label")+"', '"+request.getParameter("released")+"', "+request.getParameter("trackno")+", "+request.getParameter("artistid")+");";
-	} else {
-		sqlquery = "INSERT INTO MusicArtists (LastName, FirstName, KnownAs, Genres, Age) VALUES ('"+request.getParameter("lastname")+"', '"+request.getParameter("firstname")+"', '"+request.getParameter("knownas")+"', '"+request.getParameter("genres")+"', "+request.getParameter("age")+");";
-	}
+	String sqlquery = "DELETE FROM "+request.getParameter("table")+" WHERE id='"+request.getParameter("id")+"';";
 		
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	String url = "jdbc:sqlserver://194954ps3db.database.windows.net:1433;database=194954_projekt_ps2;user=ps3db@194954ps3db;password=tatib@w5ese;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
@@ -35,10 +32,10 @@
 		connection = DriverManager.getConnection(url);
 		String schema = connection.getSchema();
 		try (Statement statement = connection.createStatement();) {
-			statement.executeUpdate(sqlquery);
+			//statement.executeUpdate(sqlquery);
 			connection.close();
 			%><p>Success</p><%
-			String redirectURL = "tableview.jsp?dropdown="+request.getParameter("dropdown")+"&update=yes";
+			String redirectURL = "tableview.jsp?dropdown="+request.getParameter("table")+"&update=yes";
 		    response.sendRedirect(redirectURL);
 		}
 	}
