@@ -21,7 +21,7 @@
 <div class="container-fluid">      
     <center>
     <div>
-    	<form action="/194954_projekt_ps2/tableview.jsp" method=POST id="table" name="table">
+    	<form action="/tableview.jsp" method=POST id="table" name="table">
 			<h1> Drop down box or select element</h1>
         	<select id="dropdown" name="dropdown">
         	<%  result = ps2.DatabaseHandler.fetchTables();
@@ -37,7 +37,7 @@
         <br></br>
 		<div id="sqlexec">
 		<center>
-			<form action="/194954_projekt_ps2/sqlview.jsp" method=POST id="sqlquery" name="sqlquery">
+			<form action="/sqlview.jsp" method=POST id="sqlquery" name="sqlquery">
 				Insert sql query here: <br>
 				<textarea id="txtarea" name="txtarea" form="sqlquery" rows="6" cols="60"><%=request.getParameter("txtarea")%></textarea><br></br>
   				<input type="submit" value="Submit">

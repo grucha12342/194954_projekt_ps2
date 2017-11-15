@@ -30,7 +30,7 @@
        </div>
        <!-- Server responses get written here -->
        <div id="messages">
-       	<p><%=request.getParameter("update") %></p>
+       	<p><%String checkUpdate=request.getParameter("update"); %></p>
        </div>
       
        <!-- Script to utilise the WebSocket -->
@@ -47,8 +47,11 @@
                    return;
                }
                // Create a new instance of the websocket
-               webSocket = new WebSocket("ws://localhost:8080/194954_projekt_ps2/echo");
-                
+         	if (window.location.protocol != "https:") {
+         		webSocket = new WebSocket("ws://194954projekt.azurewebsites.net/194954_projekt_ps2/echo");
+			} else {
+				webSocket = new WebSocket("wss://194954projekt.azurewebsites.net/194954_projekt_ps2/echo");
+			}                
                /**
                 * Binds functions to the listeners for the websocket.
                 */
@@ -61,6 +64,10 @@
                 	   
 
                    writeResponse(event.data);
+                   checkUpdate = window.location.search.substr(1);
+                   console.log(checkUpdate);
+                   if( checkUpdate )
+                	   webSocket.send("update");
 
                };
 
@@ -91,6 +98,7 @@
            function writeResponse(text){
                messages.innerHTML += "<br/>" + text;
            }     
+
        </script>
 <p><%= request.getParameter("dropdown")%></p>
  <div id="table">
@@ -130,7 +138,7 @@
           </tr>
 		</table>
 		<br>
-		<form action="/194954_projekt_ps2/addrowview.jsp" method="POST">
+		<form action="/addrowview.jsp" method="POST">
 			<input type="hidden" name="tablename" value="<%=request.getParameter("dropdown")%>">
   			<input type="submit" value="Add row">
 		</form>
@@ -138,10 +146,6 @@
 		<br></br>
 		</div>
 <a href="index.jsp">Back to home page</a>
-<script>
-if( webSocket.readyState == WebSocket.OPEN && <%=request.getParameter("update")%> == "yes")
-	send();
-</script>
 </div>
 </body>
 </html>

@@ -18,7 +18,7 @@
 <div class="container-fluid">
 <p>You are editing <%= request.getParameter("tablename")%> table</p>
 <div id="artists" style="display: none;">
- <form action="/194954_projekt_ps2/insertdata.jsp" method="POST">
+ <form action="/insertdata.jsp" method="POST">
   Last name:<br>
   <input type="text" name="lastname"><br>
   First name:<br>
@@ -37,7 +37,7 @@
 </div>
 
 <div id="albums" style="display: none;">
- <form action="/194954_projekt_ps2/insertdata.jsp" method="POST">
+ <form action="/insertdata.jsp" method="POST">
   Album name:<br>
   <input type="text" name="albumname"><br>
   Label:<br>

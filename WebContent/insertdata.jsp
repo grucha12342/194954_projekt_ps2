@@ -35,7 +35,7 @@
 		connection = DriverManager.getConnection(url);
 		String schema = connection.getSchema();
 		try (Statement statement = connection.createStatement();) {
-			//statement.executeUpdate(sqlquery);
+			statement.executeUpdate(sqlquery);
 			connection.close();
 			%><p>Success</p><%
 			String redirectURL = "tableview.jsp?dropdown="+request.getParameter("dropdown")+"&update=yes";

@@ -17,7 +17,6 @@
 </head>
 <body>
 <div class="container-fluid">
-<p>Druga strona</p>
 <p><%= request.getParameter("txtarea")%></p>
 <div>
 <center>
@@ -64,8 +63,9 @@
 	}
 %>
 </center>
+<br><br>
 </div>
-			<form action="/194954_projekt_ps2/index.jsp" method=POST id="sqlquery" name="sqlquery">
+			<form action="/index.jsp" method=POST id="sqlquery" name="sqlquery">
 				<input type="hidden" value="<%=request.getParameter("txtarea") %>" name="txtarea" />
   				<input type="submit" value="Back to home page">
 			</form>
