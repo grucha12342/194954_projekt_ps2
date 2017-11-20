@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" %>
-<%ArrayList<String> result = null;%>
+<%ArrayList<String> resultHeaders = null;%>
 <%ArrayList<String> resultTables = null;%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,9 +24,9 @@
        </div>
        <br>
        <div>
-           <button type="button" onclick="openSocket();" >Open</button>
-           <button type="button" onclick="send();" >Send</button>
-           <button type="button" onclick="closeSocket();" >Close</button>
+           <button type="button" class="btn-primary" onclick="openSocket();" >Open</button>
+           <button type="button" class="btn-primary" onclick="send();" >Send</button>
+           <button type="button" class="btn-primary" onclick="closeSocket();" >Close</button>
        </div>
        <!-- Server responses get written here -->
        <div id="messages">
@@ -95,23 +95,12 @@
 <p><%= request.getParameter("dropdown")%></p>
  <div id="table">
         <center>
-        <table style="width:80%%" border="1" class="sortable">
+        <table style="width:80%%;" border="1" class="sortable table-striped">
 		  <tr>
-		  <% if(request.getParameter("dropdown").equals("MusicArtists")) {%>
-		  	<th>Id</th>
-		    <th>LastName</th>
-		    <th>FirstName</th> 
-		    <th>KnownAs</th> 
-		    <th>Genres</th> 
-		    <th>Age</th>
-		    <%} else { %>
-		    <th>Id</th>
-		    <th>AlbumName</th>
-		    <th>Label</th> 
-		    <th>Released</th> 
-		    <th>TrackNo</th> 
-		    <th>ArtistID</th>
-		    <% }; %>
+		  <% resultHeaders = ps2.DatabaseHandler.fetchTableHeaders(request.getParameter("dropdown"));
+		  	for (String temp : resultHeaders) {%>
+			<th style="padding: 5px;"><%= temp%></th>
+		    <% } %>
 		  </tr>
 		  <tr>
 		  <%  resultTables = ps2.DatabaseHandler.fetchDataFromTable(request.getParameter("dropdown"));
@@ -119,19 +108,10 @@
         for (String temp : resultTables) {
         	i++;
         %>
-            <td><%= temp%></td>
+            <td style="padding: 5px;"><%= temp%></td>
         <% if(i%6==0) { %>
-        	<td><input type="button" name="edit" value="Edit" onclick= ></td>
-        	<td><input type="button" name="delete" value="Delete" onclick="deletePost('<%=i/6 %>', '<%=request.getParameter("dropdown") %>');" ></td>
-        	<script type="text/javascript">
-		function deletePost(id, table) {
-			
-		    var ask = window.confirm("Are you sure you want to delete row with id="+param+"?");
-		    if (ask) {
-		        window.location="/194954_projekt_ps2/removedata.jsp?id="+id+"&table="+table
-		    }
-		}
-		</script>
+        	<td style="padding: 5px;"><input type="button" name="edit" value="Edit" class="btn-primary" onclick= ></td>
+        	<td style="padding: 5px;"><input type="button" name="delete" value="Delete" class="btn-primary" onclick="window.location=/194954_projekt_ps2/removedata.jsp?id=<%=i/6 %>&table=<%=request.getParameter("dropdown") %>"></td>
         	</tr>
         	<tr>
         <%
@@ -142,16 +122,13 @@
 		<br>
 		<form action="/194954_projekt_ps2/addrowview.jsp" method="POST">
 			<input type="hidden" name="tablename" value="<%=request.getParameter("dropdown")%>">
-  			<input type="submit" value="Add row">
+  			<input type="submit" class="btn-primary" value="Add row">
 		</form>
 		</center>
 		<br></br>
+		<p><%=resultHeaders.size() %></p>
 		</div>
 <a href="index.jsp">Back to home page</a>
-<script>
-if( webSocket.readyState == WebSocket.OPEN && <%=request.getParameter("update")%> == "yes")
-	send();
-</script>
 </div>
 </body>
 </html>

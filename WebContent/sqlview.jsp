@@ -34,16 +34,16 @@
 					ResultSet resultSet = statement.executeQuery(sqlquery)) {
 				ResultSetMetaData rsmd = resultSet.getMetaData();
 				%><p>Row size: <%= rsmd.getColumnCount() %></p>
-				<table style="width:80%%" border="1" class="sortable">
+				<table style="width:80%%;" border="1" class="sortable table-striped">
 				<tr>
 				<%for(int i = 1; i <= rsmd.getColumnCount(); i++) {%>
-				<th><%=rsmd.getColumnName(i)%> </th>
+				<th style="padding: 5px;"><%=rsmd.getColumnName(i)%> </th>
 				<% } %>
 				</tr><%
 				while (resultSet.next())
 				{
 					%><tr><%for(int j = 1; j <= rsmd.getColumnCount(); j++) {%>
-					<td><%=resultSet.getString(j)%> </td>
+					<td style="padding: 5px;"><%=resultSet.getString(j)%> </td>
 					<% } %>
 					</tr><%
                 }
@@ -67,7 +67,7 @@
 </div>
 			<form action="/194954_projekt_ps2/index.jsp" method=POST id="sqlquery" name="sqlquery">
 				<input type="hidden" value="<%=request.getParameter("txtarea") %>" name="txtarea" />
-  				<input type="submit" value="Back to home page">
+  				<input type="submit" class="btn-primary" value="Back to home page">
 			</form>
 </div>
 </body>
