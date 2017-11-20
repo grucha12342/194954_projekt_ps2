@@ -1,3 +1,4 @@
+<%@page import="ps2.DatabaseHandler"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -97,7 +98,7 @@
         <center>
         <table style="width:80%%;" border="1" class="sortable table-striped">
 		  <tr>
-		  <% resultHeaders = ps2.DatabaseHandler.fetchTableHeaders(request.getParameter("dropdown"));
+		  <% resultHeaders = DatabaseHandler.fetchTableHeaders(request.getParameter("dropdown"));
 		  	for (String temp : resultHeaders) {%>
 			<th style="padding: 5px;"><%= temp%></th>
 		    <% } %>
@@ -105,13 +106,18 @@
 		  <tr>
 		  <%  resultTables = ps2.DatabaseHandler.fetchDataFromTable(request.getParameter("dropdown"));
 		  int i=0;
+		  int idsend = 0;
         for (String temp : resultTables) {
         	i++;
+        	if(i%6 == 1) {
+        		idsend = Integer.parseInt(temp);
+        		System.out.println(idsend);
+        	}
         %>
             <td style="padding: 5px;"><%= temp%></td>
         <% if(i%6==0) { %>
         	<td style="padding: 5px;"><input type="button" name="edit" value="Edit" class="btn-primary" onclick= ></td>
-        	<td style="padding: 5px;"><input type="button" name="delete" value="Delete" class="btn-primary" onclick="window.location=/194954_projekt_ps2/removedata.jsp?id=<%=i/6 %>&table=<%=request.getParameter("dropdown") %>"></td>
+        	<td style="padding: 5px;"><input type="button" name="delete" value="Delete" onclick="window.location.href='/194954_projekt_ps2/removedata.jsp?id=<%=idsend %>&table=<%=request.getParameter("dropdown") %>'" class="btn-primary"></td>
         	</tr>
         	<tr>
         <%

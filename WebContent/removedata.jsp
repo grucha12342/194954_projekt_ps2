@@ -27,12 +27,13 @@
 		
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	String url = "jdbc:sqlserver://194954ps3db.database.windows.net:1433;database=194954_projekt_ps2;user=ps3db@194954ps3db;password=tatib@w5ese;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+	System.out.println(sqlquery);
 	Connection connection = null;
 	try {
 		connection = DriverManager.getConnection(url);
 		String schema = connection.getSchema();
 		try (Statement statement = connection.createStatement();) {
-			//statement.executeUpdate(sqlquery);
+			statement.executeUpdate(sqlquery);
 			connection.close();
 			%><p>Success</p><%
 			String redirectURL = "tableview.jsp?dropdown="+request.getParameter("table")+"&update=yes";
