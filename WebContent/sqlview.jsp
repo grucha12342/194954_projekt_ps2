@@ -17,10 +17,9 @@
 </head>
 <body>
 <div class="container-fluid">
-<p>Druga strona</p>
-<p><%= request.getParameter("txtarea")%></p>
 <div>
 <center>
+	<p>Your query: <%= request.getParameter("txtarea")%></p>
 <%
 	String sqlquery = request.getParameter("txtarea");
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -63,12 +62,12 @@
 		%><p><%= e.getMessage() %></p><%
 	}
 %>
+	<form action="/194954_projekt_ps2/index.jsp" method=POST id="sqlquery" name="sqlquery">
+		<input type="hidden" value="<%=request.getParameter("txtarea") %>" name="txtarea" />
+		<input type="submit" class="btn-primary" value="Back to home page">
+	</form>
 </center>
 </div>
-			<form action="/194954_projekt_ps2/index.jsp" method=POST id="sqlquery" name="sqlquery">
-				<input type="hidden" value="<%=request.getParameter("txtarea") %>" name="txtarea" />
-  				<input type="submit" class="btn-primary" value="Back to home page">
-			</form>
 </div>
 </body>
 </html>

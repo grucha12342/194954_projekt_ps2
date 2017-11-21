@@ -96,7 +96,7 @@
  <div id="table">
         <center>
         <p><%= request.getParameter("dropdown")%></p>
-        <p><%=request.getParameter("update") %></p>
+        <p style="display: none;">Require update? <%=request.getParameter("update") %></p>
         <table style="width:80%%;" border="1" class="sortable table-striped">
 		  <tr>
 		  <% resultHeaders = DatabaseHandler.fetchTableHeaders(request.getParameter("dropdown"));
@@ -135,17 +135,17 @@
 			<input type="hidden" name="tablename" value="<%=request.getParameter("dropdown")%>">
   			<input type="submit" class="btn-primary" value="Add row">
 		</form>
+		<br><br>
+			<a href="index.jsp">Back to home page</a>
 		</center>
 		<br></br>
-		<p><%=resultHeaders.size() %></p>
 		</div>
-	<a href="index.jsp">Back to home page</a>
+
 	<% try {
 		if (request.getParameter("update").equals("yes"))
 			SessionHandler.sendToAllConnectedSessions("update");
 		} catch (Exception e) {
 			e.printStackTrace();
-			%><p><%= e.getMessage() %></p><%
 		}%>
 </div>
 </body>

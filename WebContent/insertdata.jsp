@@ -23,9 +23,9 @@
 <%
 	String sqlquery;
 	if(request.getParameter("dropdown").equals("Albums")) {
-		sqlquery = "INSERT INTO Albums (AlbumName, Label, Released, TrackNo, ArtistID) VALUES ('"+request.getParameter("albumname")+"', '"+request.getParameter("label")+"', '"+request.getParameter("released")+"', "+request.getParameter("trackno")+", "+request.getParameter("artistid")+");";
+		sqlquery = "INSERT INTO Albums (AlbumName, Label, Released, TrackNo, ArtistID) VALUES ('"+request.getParameter("AlbumName")+"', '"+request.getParameter("Label")+"', '"+request.getParameter("Released")+"', "+request.getParameter("TrackNo")+", "+request.getParameter("ArtistID")+");";
 	} else {
-		sqlquery = "INSERT INTO MusicArtists (LastName, FirstName, KnownAs, Genres, Age) VALUES ('"+request.getParameter("lastname")+"', '"+request.getParameter("firstname")+"', '"+request.getParameter("knownas")+"', '"+request.getParameter("genres")+"', "+request.getParameter("age")+");";
+		sqlquery = "INSERT INTO MusicArtists (LastName, FirstName, KnownAs, Genres, Age) VALUES ('"+request.getParameter("LastName")+"', '"+request.getParameter("FirstName")+"', '"+request.getParameter("KnownAs")+"', '"+request.getParameter("Genres")+"', "+request.getParameter("Age")+");";
 	}
 		
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
