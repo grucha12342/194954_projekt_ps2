@@ -1,3 +1,4 @@
+<%@page import="ps2.SessionHandler"%>
 <%@page import="ps2.DatabaseHandler"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -20,18 +21,17 @@
 </head>
 <body onload="openSocket()"> 
 <div class="container-fluid">
-       <div>
+       <div style="display: none;">
            Message: <input type="text" id="messageinput" value="update"/> <br><br>
        </div>
        <br>
-       <div>
+       <div style="display: none;">
            <button type="button" class="btn-primary" onclick="openSocket();" >Open</button>
            <button type="button" class="btn-primary" onclick="send();" >Send</button>
            <button type="button" class="btn-primary" onclick="closeSocket();" >Close</button>
        </div>
        <!-- Server responses get written here -->
        <div id="messages">
-       	<p><%=request.getParameter("update") %></p>
        </div>
       
        <!-- Script to utilise the WebSocket -->
@@ -93,9 +93,10 @@
                messages.innerHTML += "<br/>" + text;
            }     
        </script>
-<p><%= request.getParameter("dropdown")%></p>
  <div id="table">
         <center>
+        <p><%= request.getParameter("dropdown")%></p>
+        <p><%=request.getParameter("update") %></p>
         <table style="width:80%%;" border="1" class="sortable table-striped">
 		  <tr>
 		  <% resultHeaders = DatabaseHandler.fetchTableHeaders(request.getParameter("dropdown"));
@@ -138,7 +139,14 @@
 		<br></br>
 		<p><%=resultHeaders.size() %></p>
 		</div>
-<a href="index.jsp">Back to home page</a>
+	<a href="index.jsp">Back to home page</a>
+	<% try {
+		if (request.getParameter("update").equals("yes"))
+			SessionHandler.sendToAllConnectedSessions("update");
+		} catch (Exception e) {
+			e.printStackTrace();
+			%><p><%= e.getMessage() %></p><%
+		}%>
 </div>
 </body>
 </html>
