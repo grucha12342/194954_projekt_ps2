@@ -20,7 +20,7 @@
 <div class="container-fluid">
 <h1>You are adding row to <%= request.getParameter("tablename")%> table</h1>
 <div>
-	<form action="/194954_projekt_ps2/insertdata.jsp" method="POST">
+	<form action="/insertdata.jsp" method="POST">
 		<% resultHeaders = DatabaseHandler.fetchTableHeaders(request.getParameter("tablename"));
 		int i = 1;
 	  	for (String temp : resultHeaders) {

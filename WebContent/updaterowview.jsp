@@ -20,7 +20,7 @@
 <div class="container-fluid">
 <h1>You are editing <%= request.getParameter("table")%> table, row ID <%= request.getParameter("id")%></h1>
 <div>
-	<form action="/194954_projekt_ps2/updatedata.jsp" method="POST">
+	<form action="/updatedata.jsp" method="POST">
 		<% resultHeaders = DatabaseHandler.fetchTableHeaders(request.getParameter("table"));
 		int i = 1;
 	  	for (String temp : resultHeaders) {

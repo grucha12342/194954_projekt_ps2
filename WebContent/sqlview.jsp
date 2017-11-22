@@ -63,7 +63,7 @@
 	}
 %>
 	<br>
-	<form action="/194954_projekt_ps2/index.jsp" method=POST id="sqlquery" name="sqlquery">
+	<form action="/index.jsp" method=POST id="sqlquery" name="sqlquery">
 		<input type="hidden" value="<%=request.getParameter("txtarea") %>" name="txtarea" />
 		<input type="submit" class="btn-primary" value="Back to home page">
 	</form>

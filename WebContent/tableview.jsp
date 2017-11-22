@@ -49,7 +49,11 @@
                    return;
                }
                // Create a new instance of the websocket
-               webSocket = new WebSocket("ws://localhost:8080/194954_projekt_ps2/echo");
+               if (window.location.protocol != "https:") {
+         			webSocket = new WebSocket("ws://194954projekt.azurewebsites.net/194954_projekt_ps2/echo");
+				} else {
+					webSocket = new WebSocket("wss://194954projekt.azurewebsites.net/194954_projekt_ps2/echo");
+				} 
                 
                /**
                 * Binds functions to the listeners for the websocket.
@@ -69,7 +73,7 @@
                webSocket.onmessage = function(event){
                    writeResponse(event.data);
                    if(event.data == "update")
-                	   window.location.href = '/194954_projekt_ps2/tableview.jsp?dropdown=<%=request.getParameter("dropdown") %>';
+                	   window.location.href = '/tableview.jsp?dropdown=<%=request.getParameter("dropdown") %>';
                 	   //location.reload();
                    //i++;
                };
@@ -119,9 +123,9 @@
         %>
             <td style="padding: 5px;"><%= temp%></td>
         <% if(i%6==0) { %>
-        	<td style="padding: 5px;"><input type="button" name="edit" value="Edit" onclick="window.location.href='/194954_projekt_ps2/updaterowview.jsp?id=<%=idsend %>&table=<%=request.getParameter("dropdown") %>'" class="btn-primary"></td>
+        	<td style="padding: 5px;"><input type="button" name="edit" value="Edit" onclick="window.location.href='/updaterowview.jsp?id=<%=idsend %>&table=<%=request.getParameter("dropdown") %>'" class="btn-primary"></td>
         	<td style="padding: 5px;"><input type="button" name="delete" value="Delete" onclick="if (confirm('Are you sure you want to delete this thing from the database?')) {
-        		window.location.href='/194954_projekt_ps2/removedata.jsp?id=<%=idsend %>&table=<%=request.getParameter("dropdown") %>'
+        		window.location.href='/removedata.jsp?id=<%=idsend %>&table=<%=request.getParameter("dropdown") %>'
 			} else {
     			// Do nothing!
 			}" class="btn-primary"></td>
@@ -133,7 +137,7 @@
           </tr>
 		</table>
 		<br>
-		<form action="/194954_projekt_ps2/addrowview.jsp" method="POST">
+		<form action="/addrowview.jsp" method="POST">
 			<input type="hidden" name="tablename" value="<%=request.getParameter("dropdown")%>">
   			<input type="submit" class="btn-primary" value="Add row">
 		</form>
