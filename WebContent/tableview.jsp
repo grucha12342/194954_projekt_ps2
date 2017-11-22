@@ -119,7 +119,7 @@
         %>
             <td style="padding: 5px;"><%= temp%></td>
         <% if(i%6==0) { %>
-        	<td style="padding: 5px;"><input type="button" name="edit" value="Edit" class="btn-primary" onclick= ></td>
+        	<td style="padding: 5px;"><input type="button" name="edit" value="Edit" onclick="window.location.href='/194954_projekt_ps2/updaterowview.jsp?id=<%=idsend %>&table=<%=request.getParameter("dropdown") %>'" class="btn-primary"></td>
         	<td style="padding: 5px;"><input type="button" name="delete" value="Delete" onclick="if (confirm('Are you sure you want to delete this thing from the database?')) {
         		window.location.href='/194954_projekt_ps2/removedata.jsp?id=<%=idsend %>&table=<%=request.getParameter("dropdown") %>'
 			} else {
