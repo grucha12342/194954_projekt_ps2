@@ -1,3 +1,4 @@
+<%@page import="javax.websocket.Session"%>
 <%@page import="ps2.SessionHandler"%>
 <%@page import="ps2.DatabaseHandler"%>
 <%@page import="java.util.ArrayList"%>
@@ -68,7 +69,8 @@
                webSocket.onmessage = function(event){
                    writeResponse(event.data);
                    if(event.data == "update")
-                	   location.reload();
+                	   window.location.href = '/194954_projekt_ps2/tableview.jsp?dropdown=<%=request.getParameter("dropdown") %>';
+                	   //location.reload();
                    //i++;
                };
 

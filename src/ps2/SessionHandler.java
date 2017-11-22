@@ -29,8 +29,8 @@ public class SessionHandler {
     }
     
     public static void sendToAllConnectedSessions(String message) {
-        for(Session session : sessions) {
-            session.getAsyncRemote().sendText(message);
+        for(Session sessions : sessions) {
+        	sessions.getAsyncRemote().sendText(message);
         }
     }
 }
