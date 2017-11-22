@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container-fluid">
-<p>You are adding row to <%= request.getParameter("tablename")%> table</p>
+<h1>You are adding row to <%= request.getParameter("tablename")%> table</h1>
 <div>
 	<form action="/194954_projekt_ps2/insertdata.jsp" method="POST">
 		<% resultHeaders = DatabaseHandler.fetchTableHeaders(request.getParameter("tablename"));
@@ -35,10 +35,11 @@
 	    i++; 
 	    } %>
 	    <input type="hidden" name="dropdown" value=<%=request.getParameter("tablename") %>> <br>
-  		<input type="submit" value="Submit">
-		<input type="reset" value="Reset">
+  		<input type="submit" class="btn-primary" value="Submit">
+		<input type="reset" class="btn-primary" value="Reset">
 	</form> 
 </div>
+<br>
 <a href="index.jsp">Back to home page</a>
 </div>
 </body>

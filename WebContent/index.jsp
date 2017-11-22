@@ -18,11 +18,11 @@
 <title>Programowanie sieciowe 2</title>
 </head>
 <body>  
-<div class="container-fluid">      
+<div>      
     <center>
     <div>
     	<form action="/194954_projekt_ps2/tableview.jsp" method=POST id="table" name="table">
-			<h1> Drop down box or select element</h1>
+			<h1> Database Admin WebApp</h1>
         	<select id="dropdown" name="dropdown">
         	<%  result = ps2.DatabaseHandler.fetchTables();
         	for (String temp : result) {
@@ -38,9 +38,9 @@
 		<div id="sqlexec">
 		<center>
 			<form action="/194954_projekt_ps2/sqlview.jsp" method=POST id="sqlquery" name="sqlquery">
-				Insert sql query here: <br>
-				<textarea id="txtarea" name="txtarea" form="sqlquery" rows="6" cols="60"><%=request.getParameter("txtarea")%></textarea><br></br>
-  				<input type="submit" class="btn-primary" value="Submit">
+				<h1>Insert sql query here: </h1>
+				<textarea id="txtarea" name="txtarea" form="sqlquery" rows="6" cols="60" style="resize: none;"><%=request.getParameter("txtarea")%></textarea><br></br>
+  				<input type="submit" class="btn-primary" value="Send query">
 			</form>
 		</center>
 		</div>

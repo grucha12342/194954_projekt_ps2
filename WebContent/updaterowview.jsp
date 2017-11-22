@@ -18,8 +18,7 @@
 </head>
 <body>
 <div class="container-fluid">
-<p>You are editing <%= request.getParameter("table")%> table</p>
-<p>row ID <%= request.getParameter("id")%></p>
+<h1>You are editing <%= request.getParameter("table")%> table, row ID <%= request.getParameter("id")%></h1>
 <div>
 	<form action="/194954_projekt_ps2/updatedata.jsp" method="POST">
 		<% resultHeaders = DatabaseHandler.fetchTableHeaders(request.getParameter("table"));
@@ -37,10 +36,11 @@
 	    } %>
 	    <input type="hidden" name="id" value=<%=request.getParameter("id") %>>
 	    <input type="hidden" name="dropdown" value=<%=request.getParameter("table") %>> <br>
-  		<input type="submit" value="Submit">
-		<input type="reset" value="Reset">
+  		<input type="submit" class="btn-primary" value="Submit">
+		<input type="reset" class="btn-primary" value="Reset">
 	</form> 
 </div>
+<br>
 <a href="index.jsp">Back to home page</a>
 </div>
 </body>

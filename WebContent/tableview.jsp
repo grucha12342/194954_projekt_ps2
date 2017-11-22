@@ -31,11 +31,11 @@
            <button type="button" class="btn-primary" onclick="send();" >Send</button>
            <button type="button" class="btn-primary" onclick="closeSocket();" >Close</button>
        </div>
-       <!-- Server responses get written here -->
-       <div id="messages">
-       </div>
-      
        <!-- Script to utilise the WebSocket -->
+       <!-- Server responses get written here -->
+		<div id="messages" class="col-sm-4"">
+		<h4>Websocket Status</h4>
+		</div>
        
        <script type="text/javascript">
                       
@@ -95,9 +95,9 @@
                messages.innerHTML += "<br/>" + text;
            }     
        </script>
- <div id="table">
+ <div id="table" class="col-sm-4"">
         <center>
-        <p><%= request.getParameter("dropdown")%></p>
+        <h1><%= request.getParameter("dropdown")%></h1>
         <p style="display: none;">Require update? <%=request.getParameter("update") %></p>
         <table style="width:80%%;" border="1" class="sortable table-striped">
 		  <tr>

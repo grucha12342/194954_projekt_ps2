@@ -19,7 +19,7 @@
 <div class="container-fluid">
 <div>
 <center>
-	<p>Your query: <%= request.getParameter("txtarea")%></p>
+	<h1>Your query: <%= request.getParameter("txtarea")%></h1>
 <%
 	String sqlquery = request.getParameter("txtarea");
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -32,7 +32,7 @@
 			try (Statement statement = connection.createStatement();
 					ResultSet resultSet = statement.executeQuery(sqlquery)) {
 				ResultSetMetaData rsmd = resultSet.getMetaData();
-				%><p>Row size: <%= rsmd.getColumnCount() %></p>
+				%><h2>Row size: <%= rsmd.getColumnCount() %></h2>
 				<table style="width:80%%;" border="1" class="sortable table-striped">
 				<tr>
 				<%for(int i = 1; i <= rsmd.getColumnCount(); i++) {%>
@@ -52,16 +52,17 @@
 		} else {
 			try (Statement statement = connection.createStatement();) {
 				statement.executeUpdate(sqlquery);
-				%><p>Query executed</p><%
+				%><h2>Query executed</h2><%
 				connection.close();
 			} 
 		}
 	}
 	catch (Exception e) {
 		e.printStackTrace();
-		%><p><%= e.getMessage() %></p><%
+		%><h2><%= e.getMessage() %></h2><%
 	}
 %>
+	<br>
 	<form action="/194954_projekt_ps2/index.jsp" method=POST id="sqlquery" name="sqlquery">
 		<input type="hidden" value="<%=request.getParameter("txtarea") %>" name="txtarea" />
 		<input type="submit" class="btn-primary" value="Back to home page">
