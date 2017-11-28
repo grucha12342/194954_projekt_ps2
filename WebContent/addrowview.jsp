@@ -17,6 +17,9 @@
 <title>Programowanie sieciowe 2</title>
 </head>
 <body>
+<div style="float: right; padding: 5px; margin-right: 5px;">
+	<a href="/.auth/logout">Logout</a>
+</div> 
 <div class="container-fluid">
 <h1>You are adding row to <%= request.getParameter("tablename")%> table</h1>
 <div>

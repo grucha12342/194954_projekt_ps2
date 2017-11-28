@@ -17,8 +17,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <title>Programowanie sieciowe 2</title>
 </head>
-<body>  
-<div>      
+<body>
+<div style="float: right; padding: 5px; margin-right: 5px;">
+	<a href="/.auth/logout">Logout</a>
+</div>    
+<div>   
     <center>
     <div>
     	<form action="/tableview.jsp" method=POST id="table" name="table">

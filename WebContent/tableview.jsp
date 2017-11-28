@@ -21,6 +21,9 @@
 <title>Programowanie sieciowe 2</title>
 </head>
 <body onload="openSocket()"> 
+<div style="float: right; padding: 5px; margin-right: 5px;">
+	<a href="/.auth/logout">Logout</a>
+</div> 
 <div class="container-fluid">
        <div style="display: none;">
            Message: <input type="text" id="messageinput" value="update"/> <br><br>
