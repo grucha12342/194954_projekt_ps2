@@ -1,9 +1,11 @@
+<%@page import="ps2.JSONHandler"%>
 <%@page import="ps2.DatabaseHandler"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%ArrayList<String> resultHeaders = null;%>
+<%String json = new String();%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,8 +20,9 @@
 </head>
 <body>
 <div style="float: right; padding: 5px; margin-right: 5px;">
-	<a href="/.auth/logout">Logout</a>
-</div> 
+	<h5><%=json=JSONHandler.getUserData(request) %>
+	<a href="/.auth/logout">Logout</a></h5>
+</div>   
 <div class="container-fluid">
 <h1>You are adding row to <%= request.getParameter("tablename")%> table</h1>
 <div>
