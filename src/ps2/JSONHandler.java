@@ -24,9 +24,8 @@ import org.json.JSONArray;
 
 public class JSONHandler {	
 	public static String getUserData(HttpServletRequest request) throws IOException, JSONException{
-		// Fetch the data
 		URL url = new URL("https://194954projekt.azurewebsites.net/.auth/me");
-
+		
 		Cookie cookie = null;
 		Cookie[] cookies = request.getCookies();
 
@@ -34,7 +33,6 @@ public class JSONHandler {
 		for(int i=0; i < cookies.length; i++) {
 		   cookie = cookies[i];
 		   connection.addRequestProperty(cookie.getName(), cookie.getValue());
-
 		}
 		Enumeration<String> headNames = request.getHeaderNames();
 		while(headNames.hasMoreElements()) {
@@ -59,6 +57,5 @@ public class JSONHandler {
 		JSONObject jsonOb = jsonAr.getJSONObject(0);
 		line = jsonOb.getString("user_id");
 		return line;
-		
 	}
 }

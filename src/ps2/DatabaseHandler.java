@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
 public class DatabaseHandler {
@@ -18,19 +17,12 @@ public class DatabaseHandler {
 		try {
 			connection = DriverManager.getConnection(url);
 			String schema = connection.getSchema();
-
-			// Create and execute a SELECT SQL statement.
 			String selectSql = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE';";
 
 			try (Statement statement = connection.createStatement();
 					ResultSet resultSet = statement.executeQuery(selectSql)) {
-
-				// Print results from select statement
-				System.out.println("Select all");
 				while (resultSet.next())
 				{
-					System.out.println(resultSet.getString(1) + " "
-							+ resultSet.getString(2));
 					list.add(resultSet.getString(3));
                 }
 				connection.close();
@@ -52,17 +44,13 @@ public class DatabaseHandler {
 		try {
 			connection = DriverManager.getConnection(url);
 			String schema = connection.getSchema();
-
-			// Create and execute a SELECT SQL statement.
 			String selectSql = "SELECT * FROM "+table+";";
 
 			try (Statement statement = connection.createStatement();
 					ResultSet resultSet = statement.executeQuery(selectSql)) {
-				
 				while (resultSet.next())
 				{
 					for(int i = 1; i <= 6; i++) {
-						//list.add(resultSet.getString(3));
 						columns.add(resultSet.getString(i));
 					}
                 }
@@ -84,13 +72,10 @@ public class DatabaseHandler {
 		try {
 			connection = DriverManager.getConnection(url);
 			String schema = connection.getSchema();
-
-			// Create and execute a SELECT SQL statement.
 			String selectSql = "SELECT * FROM "+ table +";";
 
 			try (Statement statement = connection.createStatement();
 					ResultSet resultSet = statement.executeQuery(selectSql)) {
-				
 				ResultSetMetaData rsmd = resultSet.getMetaData();
 				for(int i = 1; i <= rsmd.getColumnCount(); i++) {
 					list.add(rsmd.getColumnName(i));

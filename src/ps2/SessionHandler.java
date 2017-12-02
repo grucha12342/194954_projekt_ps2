@@ -3,16 +3,6 @@ import java.util.HashSet;
 import javax.websocket.Session;
 import java.util.Set;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Grucha
- */
 public class SessionHandler {
     private static final Set<Session> sessions = new HashSet<>();
     
