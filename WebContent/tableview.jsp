@@ -77,8 +77,9 @@
                webSocket.onmessage = function(event){
                    writeResponse(event.data);
                    if(event.data == "update")
-                	   window.location.href = '/tableview.jsp?dropdown=<%=request.getParameter("dropdown") %>';
                 	   //location.reload();
+                	   window.location.href = '/tableview.jsp?dropdown=<%=request.getParameter("dropdown") %>';
+                	   
                    //i++;
                };
 
@@ -86,13 +87,17 @@
                    writeResponse("Connection closed");
                };
            }
-          
+          	
            /**
             * Sends the value of the text input to the server
             */
            function send(){
                var text = document.getElementById("messageinput").value;
-               webSocket.send(text);
+               var getParam = '<%=request.getParameter("update")%>';
+           	   if(getParam == "yes") {
+               		webSocket.send(text);
+               		
+           	   }
            }
           
            function closeSocket(){
@@ -102,6 +107,14 @@
            function writeResponse(text){
                messages.innerHTML += "<br/>" + text;
            }     
+           
+           function websocketWaiter(){
+        	    setTimeout(function(){
+					send();
+        	    }, 1000);
+        	};
+        	
+        	websocketWaiter();
        </script>
 	 	<div id="table" class="col-sm-4"">
 	        <center>
@@ -149,13 +162,6 @@
 			</center>
 			<br></br>
 		</div>
-	
-		<% try {
-			if (request.getParameter("update").equals("yes"))
-				SessionHandler.sendToAllConnectedSessions("update");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}%>
 	</div>
 </body>
 </html>
